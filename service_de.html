@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Dienstleistungen-Deutsch Connect Academy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Startseite</a></li>
+                    <li><a href="about.html" id="about-link">Über uns</a></li>
+                    <li><a href="services.html" id="services-link">Dienstleistungen</a></li>
+                    <li><a href="academia.html" id="academia-link">Wissenschaft</a></li>
+                    <li><a href="contact.html" id="contact-link">Kontakt</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+                
+                <div class="language-switcher">
+                    <label for="language-select">Language:</label>
+                    <select id="language-select" name="language" onchange="location = this.value;">
+                        <option value="Services.html" >En</option>
+                        <option value="service_de.html"selected>De</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="services">
+            <h1>Unsere Dienstleistungen</h1>
+            <p>Bei Deutsch Connect Academy bieten wir eine Vielzahl von Dienstleistungen an, um den unterschiedlichen Bedürfnissen unserer Schüler gerecht zu werden:</p>
+            <ul>
+                <li><strong>Deutschkurse:</strong> Wir bieten umfassende Deutschkurse für alle Niveaustufen von A1 (Anfänger) bis C2 (Fortgeschrittene) an. Unsere Kurse sind sorgfältig strukturiert, um Ihnen zu helfen, starke Sprech-, Hör-, Lese- und Schreibfähigkeiten zu entwickeln.</li>
+                <li><strong>Privatunterricht:</strong> Für diejenigen, die einen personalisierten Ansatz bevorzugen, bieten unsere Privatstunden gezielte Unterstützung. Ob Sie zusätzliche Hilfe bei der Grammatik benötigen, Ihre Konversationsfähigkeiten verbessern oder sich auf eine Prüfung vorbereiten möchten, unsere Tutoren stehen Ihnen zur Seite.</li>
+                <li><strong>Wirtschaftsdeutsch:</strong> In der heutigen globalen Wirtschaft kann das Beherrschen von Wirtschaftsdeutsch Ihnen einen Wettbewerbsvorteil verschaffen. Unsere spezialisierten Kurse konzentrieren sich auf Geschäftskommunikation, Etikette und Terminologie, und statten Sie mit den Sprachkenntnissen aus, die Sie in einer deutschsprachigen Arbeitsumgebung benötigen.</li>
+                <li><strong>Prüfungsvorbereitung:</strong> Wir bieten gezielte Vorbereitungskurse für verschiedene offizielle Deutschprüfungen, einschließlich des Goethe-Zertifikats, TestDaF und TELC, an. Unsere erfahrenen Lehrer helfen Ihnen, die Strategien und das Selbstvertrauen zu entwickeln, die Sie zum Erfolg führen.</li>
+                <li><strong>Kulturelle Integration, Online-Lernen, Konversationspraxis, Sprachimmersion, Übersetzungsdienste, Firmentraining,....</strong></li>
+            </ul>
+        </section>
+        <!-- Registration Button -->
+<button class="register-button" onclick="toggleModal()">Jetzt Registrieren</button>
+
+<!-- Modal for Registration -->
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal()">&times;</span>
+        <h2>Registrierungsformular</h2>
+        <form id="registrationForm">
+            <!-- Application Level Selection -->
+            <label for="application-level">Wählen Sie das Niveau, für das Sie sich bewerben:</label>
+            <select id="application-level" name="application-level">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </select>
+
+            <!-- Payment Method Selection -->
+            <label for="payment-method">Wählen Sie die Zahlungsmethode:</label>
+            <select id="payment-method" name="payment-method">
+                <option value="full">Vollzahlung</option>
+                <option value="partial">Teilzahlung</option>
+            </select>
+
+            <!-- Payment Channels -->
+            <label for="payment-channel">Wählen Sie den Zahlungsweg:</label>
+            <select id="payment-channel" name="payment-channel">
+                <option value="mtn">MTN Mobile Money</option>
+                <option value="airtel">Airtel Money</option>
+                <option value="bank">Banküberweisung</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Zur Zahlung Fortfahren</button>
+        </form>
+    </div>
+</div>
+
+   
+
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+    
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Telefon/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage() {
+            var selectedLanguage = document.getElementById("language-select").value;
+            if (selectedLanguage === "en") {
+                window.location.href = "services.html"; // Assuming services.html is the English version
+            }
+        }
+    </script>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('acamedia-link').href = `academia.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

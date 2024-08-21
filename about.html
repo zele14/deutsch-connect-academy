@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Connect Academy - About</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html?lang=en" id="home-link">Home</a></li>
+                    <li><a href="about.html?lang=en" id="about-link">About</a></li>
+                    <li><a href="services.html?lang=en" id="services-link">Services</a></li>
+                    <li><a href="academia.html" id="academia-link">academia</a></li>
+                    <li><a href="contact.html?lang=en" id="contact-link">Contact</a></li>
+                    <li><a href="blog.html?lang=en" id="blog-link">Blog</a></li>
+                </ul>
+                
+            </nav>
+            <div class="language-switcher">
+                <label for="language-select">Language</label>
+                <select id="language-select" name="language" onchange="location = this.value;">
+                    <option value="about.html" selected>En</option>
+                    <option value="about_de.html">De</option>
+                </select>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="content-section">
+            <h2>Mission</h2>
+            <p>Our mission at Deutsch Connect Academy is to provide high-quality German language education that empowers our students to communicate effectively and confidently. We aim to create a learning environment that fosters linguistic proficiency, cultural understanding, and personal growth, enabling our students to achieve their academic, professional, and personal goals.</p>
+    
+            <h2>Vision</h2>
+            <p>Our vision is to become a leading institution in German language education, recognized for our commitment to excellence and innovation in teaching. We strive to create a global community of learners who are not only proficient in the German language but also enriched by an understanding of German culture and its global influence.</p>
+    
+            <h2>Goals</h2>
+            <p>1. To offer comprehensive German language programs that cater to learners of all levels, from beginners to advanced.</p>
+            <p>2. To provide personalized learning experiences through one-on-one tutoring, small group classes, and online courses.</p>
+            <p>3. To prepare students for success in German language proficiency exams, such as TestDaF, Goethe-Zertifikat, and TELC.</p>
+            <p>4. To foster cultural awareness and understanding through workshops, events, and immersive learning experiences.</p>
+            <p>5. To continually innovate and enhance our teaching methods to meet the evolving needs of our students.</p>
+        </div>
+        <section class="about">
+            <img src="ceo.jpg" alt="Ishimwe Christophe" class="founder-photo"style="width: 300px; height: 300px;">
+            <figcaption>Ishimwe Christophe - Founder and CEO</figcaption>
+            <div class="message-container">
+                <h1>Founder’s Message</h1>
+                
+                <p>As the founder of Deutsch Connect Academy, I am profoundly dedicated to providing outstanding language education and fostering an environment where students can thrive. My personal commitment to education is rooted in a deep-seated passion for teaching and a belief in the transformative power of language.</p>
+        
+                <p>Deutsch Connect Academy stands on the pillars of <span class="highlight">excellence</span>, <span class="highlight">integrity</span>, and a genuine enthusiasm for helping learners achieve their full potential. We strive to deliver a top-notch educational experience by integrating innovative teaching methods, leveraging the latest resources, and continuously improving our curriculum to meet the needs of our diverse student body.</p>
+        
+                <p>Our core values guide every aspect of our operations. <span class="highlight">Excellence</span> drives us to ensure that our teaching methods, materials, and support services are of the highest quality. <span class="highlight">Integrity</span> ensures that we maintain transparency, honesty, and fairness in all our interactions with students, staff, and partners. <span class="highlight">Passion for teaching</span> fuels our commitment to inspiring and motivating students, making their learning experience both effective and enjoyable.</p>
+        
+                <p>We believe that learning a new language opens doors to countless opportunities, both personally and professionally. At Deutsch Connect Academy, we are committed to not just teaching the German language, but also to nurturing an appreciation for the culture and providing the tools needed for success in a globalized world.</p>
+        
+                <p>We eagerly anticipate the opportunity to welcome you to our academy. Our dedicated team is here to support you every step of the way, offering personalized guidance and encouragement throughout your language learning journey. Whether you are embarking on this path for academic, professional, or personal reasons, we are here to help you achieve your goals and make the most of your time with us.</p>
+        
+                <p>Thank you for considering Deutsch Connect Academy as your partner in learning. We look forward to being a part of your success story.</p>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Phone/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Deutsch Connect Academy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html?lang=en" id="home-link">Home</a></li>
+                    <li><a href="about.html?lang=en" id="about-link">About</a></li>
+                    <li><a href="services.html?lang=en" id="services-link">Services</a></li>
+                    <li><a href="academia.html" id="academia-link">Academia</a></li>
+                    <li><a href="contact.html?lang=en" id="contact-link">Contact</a></li>
+                    <li><a href="blog.html?lang=en" id="blog-link">Blog</a></li>
+                </ul>
+                
+                <div class="language-switcher">
+                    <label for="language-select">Language:</label>
+                    <select id="language-select" name="language" onchange="location = this.value;">
+                        <option value="Services.html" selected>En</option>
+                        <option value="service_de.html">De</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <section class="services">
+            <h1>Our Services</h1>
+            <p>At Deutsch Connect Academy, we offer a variety of services to meet the diverse needs of our students:</p>
+            <ul>
+                <li><strong>German Language Courses:</strong> Comprehensive courses from beginner (A1) to advanced (C2), focusing on all language skills.</li>
+                <li><strong>Private Tutoring:</strong> Personalized sessions for targeted support in grammar, conversation, or exam preparation.</li>
+                <li><strong>Business German:</strong> Specialized courses for mastering business communication and terminology in a German-speaking work environment.</li>
+                <li><strong>Exam Preparation:</strong> Courses for official exams like Goethe-Zertifikat, TestDaF, and TELC, helping students build confidence and strategies for success.</li>
+                <li><strong>Cultural Integration, Online Learning, Conversational Practice, Language Immersion,Translation Services, Corporate Training,... </li>
+            </ul>
+
+           
+        </section>
+        <!-- Registration Button -->
+     <button class="register-button" onclick="toggleModal()">Register Now</button>
+
+     <!-- Modal for Registration -->
+     <div id="registrationModal" class="modal">
+         <div class="modal-content">
+             <span class="close" onclick="toggleModal()">&times;</span>
+             <h2>Registration Form</h2>
+             <form id="registrationForm">
+                 <!-- Application Level Selection -->
+                 <label for="application-level">Select the Level You're Applying For:</label>
+                 <select id="application-level" name="application-level">
+                     <option value="A1">A1</option>
+                     <option value="A2">A2</option>
+                     <option value="B1">B1</option>
+                     <option value="B2">B2</option>
+                 </select>
+ 
+                 <!-- Payment Method Selection -->
+                 <label for="payment-method">Choose Payment Method:</label>
+                 <select id="payment-method" name="payment-method">
+                     <option value="full">Full Installment</option>
+                     <option value="partial">Partial Installment</option>
+                 </select>
+ 
+                 <!-- Payment Channels -->
+                 <label for="payment-channel">Choose Payment Channel:</label>
+                 <select id="payment-channel" name="payment-channel">
+                     <option value="mtn">MTN Mobile Money</option>
+                     <option value="airtel">Airtel Money</option>
+                     <option value="bank">Bank Transfer</option>
+                 </select>
+ 
+                 <!-- Submit Button -->
+                 <button type="submit" class="submit-button">Proceed to Payment</button>
+             </form>
+         </div>
+     </div>
+    </main>
+
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank" style="max-width: 60%; margin: 0 auto; display: block; border-radius: 5px;">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Phone/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

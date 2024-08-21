@@ -1,0 +1,371 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ddd3d3; /* Light gray for a clean background */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container for page content */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styling */
+header {
+    background-color: #000; /* Black */
+    color: #fff;
+    padding: 40px 0;
+    position: relative; /* Ensure the logo can be positioned absolutely */
+}
+
+header .logo {
+    width: 10%; /* Logo size adjusted */
+    height: auto; /* Maintain aspect ratio */
+    position: absolute;
+    top: 3px; /* Positioning adjustment */
+    left: 3px;
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 2.5rem; /* Larger font size for desktops */
+}
+
+/* Navigation menu styling */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    background-color: #d50032; /* Red (German flag color) */
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: #b71c1c; /* Darker red for hover/focus */
+}
+
+/* Main content styling */
+.main-content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ffcc00; /* Yellow border (German flag color) */
+}
+
+/* Footer styling */
+footer {
+    background-color: #000; /* Black */
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    margin-top: 5px;
+}
+
+/* Message Container */
+.message-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* Space between the image and the text */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.message-container img {
+    border-radius: 10px;
+    width: 30%;
+    height: auto;
+}
+
+.text-content {
+    width: 65%;
+    text-align: justify;
+}
+
+.message-container h1 {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.message-container p {
+    margin-bottom: 20px; /* Space between paragraphs */
+}
+
+.highlight {
+    font-weight: bold;
+}
+
+.message-container img {
+    border-radius: 10px;
+    width: 10% !important; /* Smaller image size with important */
+    height: auto !important; /* Maintain aspect ratio with important */
+}
+
+.image-container img {
+    width: 10px !important; /* Smaller width with important */
+    height: 15px !important; /* Smaller height with important */
+    border-radius: 25% / 12%; /* Creates an oval shape */
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.whatsapp-button img {
+    width: 30px !important; /* Smaller width with important */
+    height: auto !important; /* Maintain aspect ratio */
+    border-radius: 70%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.whatsapp-button {
+    width: 50px; /* Smaller width */
+    height: 50px; /* Smaller height */
+    z-index: 1000;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button styling */
+button,
+input[type="submit"] {
+    background-color: #d50032; /* Red (German flag color) */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover,
+input[type="submit"]:hover,
+button:focus,
+input[type="submit"]:focus {
+    background-color: #b71c1c; /* Darker red for hover/focus */
+}
+
+/* Language switcher styling */
+.language-switcher {
+    position: absolute; /* Position it relative to the header */
+    top: 10px; /* Adjust top position as needed */
+    right: 10px; /* Adjust right position as needed */
+    background-color: #ffcc00; /* Yellow (German flag color) */
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.language-switcher select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ce0b0b;
+    background-color: #d11010;
+    color: #fff;
+}
+
+/* WhatsApp Chat Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 120px; /* Smaller width */
+    height: 120px; /* Smaller height */
+    z-index: 1000;
+}
+
+.whatsapp-button img {
+    width: 100%;
+    height: auto;
+    border-radius: 70%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Slightly smaller shadow */
+    transition: transform 0.3s;
+}
+
+.whatsapp-button img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem; /* Slightly smaller font size for larger tablets and smaller desktops */
+    }
+}
+
+@media (max-width: 992px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .main-content {
+        margin: 10px 0;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.75rem; /* Adjust font size for tablets and large phones */
+    }
+
+    nav ul {
+        padding: 0;
+    }
+
+    nav ul li {
+        margin-bottom: 5px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .message-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .message-container img {
+        width: 50%;
+    }
+
+    .text-content {
+        width: 100%;
+    }
+
+    .image-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image-description {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .image-container img {
+        width: 120px; /* Reduce size on smaller screens */
+        height: 120px; /* Match the width */
+    }
+
+    .whatsapp-button {
+        width: 30px; /* Smaller width */
+        height: 30px; /* Smaller height */
+    }
+}
+
+@media (max-width: 576px) {
+    header h1 {
+        font-size: 1.5rem; /* Smaller font size for phones */
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    button,
+    input[type="submit"] {
+        padding: 8px;
+    }
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px; /* Max width for larger screens */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+p {
+    margin-bottom: 20px; /* Adjust the value to increase or decrease the space */
+}

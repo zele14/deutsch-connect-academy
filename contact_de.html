@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Deutsch Connect Academy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Startseite</a></li>
+                    <li><a href="about.html" id="about-link">Über uns</a></li>
+                    <li><a href="services.html" id="services-link">Dienstleistungen</a></li>
+                    <li><a href="Academia.html" id="academia-link">Wissenschaft</a></li>
+                    <li><a href="contact.html" id="contact-link">Kontakt</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+                
+                <div class="language-switcher">
+                    <label for="language-select">Sprache</label>
+                    <select id="language-select" name="language" onchange="location = this.value;">
+                        <option value="services.html" selected>En</option>
+                        <option value="services_de.html">De</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact">
+            <h1>Kontakt</h1>
+            <p>Wenn Sie Fragen haben oder weitere Informationen benötigen, zögern Sie bitte nicht, uns zu kontaktieren. Wir sind hier, um Ihnen zu helfen und Sie zu unterstützen.</p>
+            <form action="https://formspree.io/f/{your_form_id}" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Nachricht:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Senden</button>
+            </form>
+        </section>
+    </main>
+    
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank" aria-label="WhatsApp-Chat">
+        <img src="whatsapp.jpeg" alt="Chatten Sie mit uns auf WhatsApp">
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>E-Mail: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Telefon/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

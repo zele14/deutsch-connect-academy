@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Contact - Deutsch Connect Academy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html?lang=en" id="home-link">Home</a></li>
+                    <li><a href="about.html?lang=en" id="about-link">About</a></li>
+                    <li><a href="services.html?lang=en" id="services-link">Services</a></li>
+                    <li><a href="academia.html" id="academia-link">academia</a></li>
+                    <li><a href="contact.html?lang=en" id="contact-link">Contact</a></li>
+                    <li><a href="blog.html?lang=en" id="blog-link">Blog</a></li>
+                </ul>
+                
+            </nav>
+            <div class="language-switcher">
+                <label for="language-select">Ln</label>
+                <select id="language-select" name="language" onchange="location = this.value;">
+                    <option value="contact.html">En</option>
+                    <option value="contact_de.html">De</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <section class="contact">
+            <h1>Contact Us</h1>
+            <p>If you have any questions or need further information, please don't hesitate to get in touch with us. We are here to help and support you.</p>
+            <form action="https://formspree.io/f/{your_form_id}" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+    
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank" aria-label="WhatsApp Chat">
+        <img src="whatsapp.jpeg" alt="Chat with us on WhatsApp">
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Phone/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+</html>

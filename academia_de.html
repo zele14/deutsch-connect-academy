@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>SWissenschaft - Deutsch Connect Academy</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Startseite</a></li>
+                    <li><a href="about.html" id="about-link">Über uns</a></li>
+                    <li><a href="services.html" id="services-link">Dienstleistungen</a></li>
+                    <li><a href="academia_de.html" id="academia-link">SWissenschaft</a></li>
+                    <li><a href="contact.html" id="contact-link">Kontakt</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+        <div class="language-switcher">
+            <label for="language-select">Sprache:</label>
+            <select id="language-select" name="language">
+                <option value="academia.html">En</option>
+                <option value="academia_de.html" selected>De</option>
+            </select>
+        </div>
+    </header>
+
+</section>
+<section class="quiz">
+    <h2>Take the Quiz</h2>
+    <label for="level-select">Select Level:</label>
+    <select id="level-select">
+        <option value="A1">A1</option>
+        <option value="A2">A2</option>
+        <option value="B1">B1</option>
+        <option value="B2">B2</option>
+    </select>
+    <button id="start-quiz">Start Quiz</button>
+
+    <div id="quiz-container"></div>
+    <button id="submit-quiz" style="display:none;">Submit Quiz</button>
+    <div id="quiz-result"></div>
+</section>
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+
+    <script>
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            if (selectedLanguage === 'en') {
+                window.location.href = 'booking.html'; // Adjust path to English version
+            } else if (selectedLanguage === 'de') {
+                window.location.href = 'booking_de.html'; // This is your current German version
+            }
+        });
+    </script>
+   <script>
+    function updateLinks(lang) {
+        document.getElementById('home-link').href = `index.html?lang=${lang}`;
+        document.getElementById('about-link').href = `about.html?lang=${lang}`;
+        document.getElementById('services-link').href = `services.html?lang=${lang}`;
+        document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+        document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+        document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+    }
+
+    // Automatically update the links based on the current language
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+        updateLinks(lang);
+
+        // Set the correct option in the language dropdown
+        document.getElementById('language-select').value = lang;
+    };
+
+    // Handle language switch
+    function switchLanguage(lang) {
+        updateLinks(lang);
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+    }
+</script>
+<section class="booking">
+    <h2 id="booking-title">Eine Sitzung buchen</h2>
+    <form action="booking.php" method="post">
+        <label for="name" id="label-name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email" id="label-email">E-Mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="session-type" id="label-session-type">Sitzungstyp:</label>
+        <select id="session-type" name="session-type" required>
+            <option value="private" id="option-private">Privatunterricht</option>
+            <option value="group" id="option-group">Gruppensitzung</option>
+            <option value="business" id="option-business">Wirtschaftsdeutsch</option>
+            <option value="exam" id="option-exam">Prüfungsvorbereitung</option>
+        </select>
+
+        <label for="date" id="label-date">Bevorzugtes Datum:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="message" id="label-message">Zusätzliche Nachricht:</label>
+        <textarea id="message" name="message"></textarea>
+
+        <button type="submit" id="submit-button">Jetzt buchen</button>
+    </form>
+</section>
+<section class="materials">
+    <h2>Lehrmaterialien</h2>
+    <p>Geben Sie das Passwort ein, um auf die Lehrmaterialien zuzugreifen:</p>
+    <form id="password-form">
+        <label for="password">Passwort:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Absenden</button>
+    </form>
+    <div id="materials-content" style="display:none;">
+        <p>Unten finden Sie einige der verfügbaren Lehrmaterialien zum Herunterladen. Klicken Sie auf ein Material, um den Download zu starten.</p>
+        <ul>
+            <li><a href="materials/material1.pdf" download>Material 1: [Titel]</a></li>
+            <li><a href="materials/material2.pdf" download>Material 2: [Titel]</a></li>
+            <li><a href="materials/material3.pdf" download>Material 3: Alte Prüfungen</a></li>
+        </ul>
+    </div>
+    <div id="error-message" style="color:red; display:none;">Falsches Passwort. Bitte versuchen Sie es erneut.</div>
+</section>
+
+<script>
+    document.getElementById('password-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const password = document.getElementById('password').value;
+        const correctPassword = 'password'; // Replace with the actual password
+
+        if (password === correctPassword) {
+            document.getElementById('materials-content').style.display = 'block';
+            document.getElementById('password-form').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+        } else {
+            document.getElementById('error-message').style.display = 'block';
+        }
+    });
+</script>
+
+
+<footer>
+    <div class="container">
+        <div class="contact-info">
+            <p>E-Mail: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+            <p>Telefon/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

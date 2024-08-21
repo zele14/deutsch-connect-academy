@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Booking Sessions - Deutsch Connect Academy</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Home</a></li>
+                    <li><a href="about.html" id="about-link">About</a></li>
+                    <li><a href="services.html" id="services-link">Services</a></li>
+                    <li><a href="booking.html" id="booking-link">Book a Session</a></li>
+                    <li><a href="materials.html" id="materials-link">Materials</a></li>
+                    <li><a href="contact.html" id="contact-link">Contact</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="language-switcher">
+            <label for="language-select">Ln:</label>
+            <select id="language-select" name="language">
+                <option value="en">En</option>
+                <option value="de">De</option>
+            </select>
+        </div>
+    </header>
+ 
+     <!-- Registration Button -->
+     <button class="register-button" onclick="toggleModal()">Register Now</button>
+
+     <!-- Modal for Registration -->
+     <div id="registrationModal" class="modal">
+         <div class="modal-content">
+             <span class="close" onclick="toggleModal()">&times;</span>
+             <h2>Registration Form</h2>
+             <form id="registrationForm">
+                 <!-- Application Level Selection -->
+                 <label for="application-level">Select the Level You're Applying For:</label>
+                 <select id="application-level" name="application-level">
+                     <option value="A1">A1</option>
+                     <option value="A2">A2</option>
+                     <option value="B1">B1</option>
+                     <option value="B2">B2</option>
+                 </select>
+ 
+                 <!-- Payment Method Selection -->
+                 <label for="payment-method">Choose Payment Method:</label>
+                 <select id="payment-method" name="payment-method">
+                     <option value="full">Full Installment</option>
+                     <option value="partial">Partial Installment</option>
+                 </select>
+ 
+                 <!-- Payment Channels -->
+                 <label for="payment-channel">Choose Payment Channel:</label>
+                 <select id="payment-channel" name="payment-channel">
+                     <option value="mtn">MTN Mobile Money</option>
+                     <option value="airtel">Airtel Money</option>
+                     <option value="bank">Bank Transfer</option>
+                 </select>
+ 
+                 <!-- Submit Button -->
+                 <button type="submit" class="submit-button">Proceed to Payment</button>
+             </form>
+         </div>
+     </div>
+ 
+     <section class="quiz">
+         <h2>Take the Quiz</h2>
+         <label for="level-select">Select Level:</label>
+         <select id="level-select">
+             <option value="A1">A1</option>
+             <option value="A2">A2</option>
+             <option value="B1">B1</option>
+             <option value="B2">B2</option>
+         </select>
+         <button id="start-quiz">Start Quiz</button>
+ 
+         <div id="quiz-container"></div>
+         <button id="submit-quiz" style="display:none;">Submit Quiz</button>
+         <div id="quiz-result"></div>
+     </section>
+ 
+     <footer>
+         <div class="container">
+             <div class="contact-info">
+                 <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                 <p>Phone/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+             </div>
+         </div>
+     </footer>
+ 
+     <script type="module">
+         import { A1Quiz } from './A1Quiz.js';
+         import { A2Quiz } from './A2Quiz.js';
+         import { B1Quiz } from './B1Quiz.js';
+         import { B2Quiz } from './B2Quiz.js';
+ 
+         const quizzes = {
+             A1: A1Quiz,
+             A2: A2Quiz,
+             B1: B1Quiz,
+             B2: B2Quiz
+         };
+ 
+         document.getElementById('start-quiz').addEventListener('click', function() {
+             const level = document.getElementById('level-select').value;
+             const quizData = quizzes[level];
+             if (quizData) {
+                 displayQuiz(quizData);
+                 document.getElementById('submit-quiz').style.display = 'inline';
+             } else {
+                 console.error('Quiz data not found for level:', level);
+             }
+         });
+ 
+         function displayQuiz(quizData) {
+             const quizContainer = document.getElementById('quiz-container');
+             quizContainer.innerHTML = '';
+ 
+             quizData.forEach((q, index) => {
+                 const questionDiv = document.createElement('div');
+                 questionDiv.className = 'question';
+ 
+                 const questionTitle = document.createElement('h3');
+                 questionTitle.textContent = `Q${index + 1}: ${q.question}`;
+                 questionDiv.appendChild(questionTitle);
+ 
+                 q.options.forEach((option) => {
+                     const optionLabel = document.createElement('label');
+                     optionLabel.textContent = option;
+ 
+                     const optionInput = document.createElement('input');
+                     optionInput.type = 'radio';
+                     optionInput.name = `question${index}`;
+                     optionInput.value = option;
+ 
+                     optionLabel.prepend(optionInput);
+                     questionDiv.appendChild(optionLabel);
+                     questionDiv.appendChild(document.createElement('br'));
+                 });
+ 
+                 quizContainer.appendChild(questionDiv);
+             });
+         }
+ 
+         document.getElementById('submit-quiz').addEventListener('click', function() {
+             const quizContainer = document.getElementById('quiz-container');
+             const questions = quizContainer.getElementsByClassName('question');
+             let score = 0;
+ 
+             Array.from(questions).forEach((question, index) => {
+                 const selectedOption = question.querySelector('input[type="radio"]:checked');
+                 if (selectedOption && selectedOption.value === quizzes[document.getElementById('level-select').value][index].answer) {
+                     score++;
+                 }
+             });
+ 
+             const resultDiv = document.getElementById('quiz-result');
+             resultDiv.textContent = `Your Score: ${score} / ${questions.length}`;
+         });
+ 
+         // Modal Toggle Function
+         function toggleModal() {
+             const modal = document.getElementById('registrationModal');
+             modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+         }
+     </script>
+    <section class="booking">
+        <h2 id="booking-title">Book a Session</h2>
+        <form action="booking.php" method="post">
+            <label for="name" id="label-name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email" id="label-email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="session-type" id="label-session-type">Session Type:</label>
+            <select id="session-type" name="session-type" required>
+                <option value="private" id="option-private">Private Tutoring</option>
+                <option value="group" id="option-group">Group Session</option>
+                <option value="business" id="option-business">Business German</option>
+                <option value="exam" id="option-exam">Exam Preparation</option>
+            </select>
+
+            <label for="date" id="label-date">Preferred Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="message" id="label-message">Additional Message:</label>
+            <textarea id="message" name="message"></textarea>
+
+            <button type="submit" id="submit-button">Book Now</button>
+        </form>
+    </section>
+
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Phone/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                "booking-title": "Book a Session",
+                "label-name": "Name:",
+                "label-email": "Email:",
+                "label-session-type": "Session Type:",
+                "option-private": "Private Tutoring",
+                "option-group": "Group Session",
+                "option-business": "Business German",
+                "option-exam": "Exam Preparation",
+                "label-date": "Preferred Date:",
+                "label-message": "Additional Message:",
+                "submit-button": "Book Now"
+            },
+            de: {
+                "booking-title": "Buchen Sie eine Sitzung",
+                "label-name": "Name:",
+                "label-email": "E-Mail:",
+                "label-session-type": "Sitzungstyp:",
+                "option-private": "Privatunterricht",
+                "option-group": "Gruppensitzung",
+                "option-business": "Geschäftsdeutsch",
+                "option-exam": "Prüfungsvorbereitung",
+                "label-date": "Bevorzugtes Datum:",
+                "label-message": "Zusätzliche Nachricht:",
+                "submit-button": "Jetzt buchen"
+            }
+        };
+
+        function updateContent(lang) {
+            document.getElementById('booking-title').innerText = translations[lang]["booking-title"];
+            document.getElementById('label-name').innerText = translations[lang]["label-name"];
+            document.getElementById('label-email').innerText = translations[lang]["label-email"];
+            document.getElementById('label-session-type').innerText = translations[lang]["label-session-type"];
+            document.getElementById('option-private').innerText = translations[lang]["option-private"];
+            document.getElementById('option-group').innerText = translations[lang]["option-group"];
+            document.getElementById('option-business').innerText = translations[lang]["option-business"];
+            document.getElementById('option-exam').innerText = translations[lang]["option-exam"];
+            document.getElementById('label-date').innerText = translations[lang]["label-date"];
+            document.getElementById('label-message').innerText = translations[lang]["label-message"];
+            document.getElementById('submit-button').innerText = translations[lang]["submit-button"];
+        }
+
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('booking-link').href = `booking.html?lang=${lang}`;
+            document.getElementById('materials-link').href = `materials.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Handle language switch
+        document.getElementById('language-select').addEventListener('change', function() {
+            const lang = this.value;
+            updateContent(lang);
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url);
+        });
+
+        // Set language based on URL parameter or default to English
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'en';
+            document.getElementById('language-select').value = lang;
+            updateContent(lang);
+            updateLinks(lang);
+        };
+    </script>
+    <form action="booking.php" method="POST">
+
+</body>
+</html>

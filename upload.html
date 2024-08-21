@@ -1,0 +1,43 @@
+<!-- upload.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Upload Materials - Deutsch Connect Academy</title>
+</nav>
+<div class="language-switcher">
+    <label for="language-select">Ln:</label>
+    <select id="language-select" name="language">
+        <option value="en">En</option>
+        <option value="de">De</option>
+    </select>
+    </nav>
+</head>
+<body>
+    <header>
+        <h1>Upload Teaching Materials</h1>
+    </header>
+    <section class="upload">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="file">Choose file:</label>
+            <input type="file" id="file" name="file" required>
+
+            <button type="submit">Upload</button>
+        </form>
+    </section>
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Phone/WhatsApp: <a href="tel:+0783697405">0783697405</a></p>
+            </div>
+            
+        </div>
+    </footer>
+</body>
+</html>

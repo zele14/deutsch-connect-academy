@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Deutsch Connect Academy - Startseite</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Startseite</a></li>
+                    <li><a href="about.html" id="about-link">Über Uns</a></li>
+                    <li><a href="services.html" id="services-link">Dienstleistungen</a></li>
+                    <li><a href="academia.html" id="academia-link">Wissenschaft</a></li>
+                    <li><a href="contact.html" id="contact-link">Kontakt</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <label for="language-select">Sprache</label>
+                    <select id="language-select" name="language" onchange="location = this.value;">
+                        <option value="index.html" >En</option>
+                        <option value="index_de.html"selected>De</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Willkommen bei der Deutsch Connect Academy</h1>
+            <p>Ihr Tor zur Beherrschung der deutschen Sprache und Kultur.</p>
+        </div>
+        <img src="academy.jpg" alt="Akademieleben" class="hero-image"style="width: 400px; height: 300px;">    
+    </section>
+    <section class="about-academy">
+        <h2>Über Unsere Akademie</h2>
+        <p>
+            In der Deutsch Connect Academy legen wir großen Wert auf eine qualitativ hochwertige
+            Deutschsprachenausbildung. Unsere Akademie bietet ein dynamisches Lernumfeld,
+            erfahrene Dozenten und eine unterstützende Gemeinschaft, um den Studenten zu helfen,
+            ihre Sprachziele zu erreichen. Begleiten Sie uns, um das lebendige Leben an unserer Akademie
+            zu erleben, wo Bildung auf Kultur und Wachstum trifft.
+        </p>
+    </section>
+    <!-- Academy Life Section -->
+    <section class="academy-life">
+        <h2>Erleben Sie das Akademieleben</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <p>Interaktive Klassenzimmersitzungen</p>
+                <img src="funny.jpg" alt="Klassenzimmer"style="width: 250px; height: 250px;">
+                <img src="act.jpg" alt="Classroom"style="width: 250px; height: 250px;"> 
+            </div>
+            <div class="gallery-item">
+                <p>Engagierte und begeisterte Studenten</p>
+                <img src="busy.jpg" alt="Studenten"style="width: 250px; height: 250px;">     
+            </div>
+            <div class="card">
+                <p><strong> Akademie bietet einen ruhigen und komfortablen Raum für persönliches Lernen, sodass die Schüler sich ohne Ablenkungen konzentrieren können.</strong></p>
+                <img src="pers.jpg" alt="Personalisierter Lernbereich"style="width: 250px; height: 250px;">
+                <div class="image-description">    
+                </div>
+            </div>
+            <div class="card">
+                <p><strong> Schüler sind glücklich und engagiert in ihrer Lernreise, mit vielen Möglichkeiten, mit Gleichaltrigen zusammenzuarbeiten und sich auszutauschen. Diese Zusammenarbeit hilft jedem Schüler, seine Einsichten in die deutsche Sprache, Kultur und die verfügbaren Möglichkeiten zu teilen.</strong></p>
+                <img src="students.jpg" alt="Schülerzusammenarbeit" style="width: 250px; height: 250px;">
+                <div class="image-description">     
+                </div>
+            </div>
+            <div class="card">
+                <p><strong> Deutsch Connect Academy haben wir hervorragende Einrichtungen mit einer erfrischenden natürlichen Umgebung, die einen komfortablen Raum für Lernen und Interaktion bietet.</strong></p>
+                <img src="stella.jpg" alt="Entspannte Lernumgebung" style="width: 250px; height: 250px;">
+                <div class="image-description">    
+                </div>
+            </div>
+           
+        </div>
+  
+    <!-- Textual Content -->
+   
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>Email: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Telefon/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function updateLinks(lang) {
+            document.getElementById('home-link').href = `index.html?lang=${lang}`;
+            document.getElementById('about-link').href = `about.html?lang=${lang}`;
+            document.getElementById('services-link').href = `services.html?lang=${lang}`;
+            document.getElementById('academia-link').href = `academia.html?lang=${lang}`;
+            document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+            document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+        }
+
+        // Automatically update the links based on the current language
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+            updateLinks(lang);
+
+            // Set the correct option in the language dropdown
+            document.getElementById('language-select').value = lang;
+        };
+
+        // Handle language switch
+        function switchLanguage(lang) {
+            updateLinks(lang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.location.href = url.toString();
+        }
+    </script>
+</body>
+
+</html>

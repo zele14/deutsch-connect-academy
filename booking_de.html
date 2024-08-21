@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sitzungen buchen - Deutsch Connect Academy</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.jpg" alt="Deutsch Connect Academy Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" id="home-link">Startseite</a></li>
+                    <li><a href="about.html" id="about-link">Über uns</a></li>
+                    <li><a href="services.html" id="services-link">Dienstleistungen</a></li>
+                    <li><a href="booking.html" id="booking-link">Sitzung buchen</a></li>
+                    <li><a href="materials.html" id="materials-link">Materialien</a></li>
+                    <li><a href="contact.html" id="contact-link">Kontakt</a></li>
+                    <li><a href="blog.html" id="blog-link">Blog</a></li>
+                </ul>
+                
+            </nav>
+        </div>
+        <div class="language-switcher">
+            <label for="language-select">Sprache:</label>
+            <select id="language-select" name="language">
+                <option value="en">En</option>
+                <option value="de" selected>De</option>
+            </select>
+        </div>
+    </header>
+<!-- Registration Button -->
+<button class="register-button" onclick="toggleModal()">Jetzt Registrieren</button>
+
+<!-- Modal for Registration -->
+<div id="registrationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleModal()">&times;</span>
+        <h2>Registrierungsformular</h2>
+        <form id="registrationForm">
+            <!-- Application Level Selection -->
+            <label for="application-level">Wählen Sie das Niveau, für das Sie sich bewerben:</label>
+            <select id="application-level" name="application-level">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </select>
+
+            <!-- Payment Method Selection -->
+            <label for="payment-method">Wählen Sie die Zahlungsmethode:</label>
+            <select id="payment-method" name="payment-method">
+                <option value="full">Vollzahlung</option>
+                <option value="partial">Teilzahlung</option>
+            </select>
+
+            <!-- Payment Channels -->
+            <label for="payment-channel">Wählen Sie den Zahlungsweg:</label>
+            <select id="payment-channel" name="payment-channel">
+                <option value="mtn">MTN Mobile Money</option>
+                <option value="airtel">Airtel Money</option>
+                <option value="bank">Banküberweisung</option>
+            </select>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Zur Zahlung Fortfahren</button>
+        </form>
+    </div>
+</div>
+
+    <section class="materials">
+        <h2>Lehrmaterialien</h2>
+        <p>Unten finden Sie einige der Lehrmaterialien zum Herunterladen. Klicken Sie auf ein beliebiges Material, um den Download zu starten.</p>
+        <ul>
+            <li><a href="materials/material1.pdf" download>Material 1: [Titel]</a></li>
+            <li><a href="materials/material2.pdf" download>Material 2: [Titel]</a></li>
+            <li><a href="materials/material3.pdf" download>Material 3: Vergangene Prüfungen</a></li>
+        </ul>
+    </section>
+    <section class="quiz">
+        <h2>Take the Quiz</h2>
+        <label for="level-select">Select Level:</label>
+        <select id="level-select">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+        </select>
+        <button id="start-quiz">Start Quiz</button>
+
+        <div id="quiz-container"></div>
+        <button id="submit-quiz" style="display:none;">Submit Quiz</button>
+        <div id="quiz-result"></div>
+    </section>
+    <section class="booking">
+        <h2>Sitzung buchen</h2>
+        <form action="booking.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="session-type">Sitzungstyp:</label>
+            <select id="session-type" name="session-type" required>
+                <option value="private">Privatunterricht</option>
+                <option value="group">Gruppensitzung</option>
+                <option value="business">Wirtschaftsdeutsch</option>
+                <option value="exam">Prüfungsvorbereitung</option>
+            </select>
+
+            <label for="date">Bevorzugtes Datum:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="message">Zusätzliche Nachricht:</label>
+            <textarea id="message" name="message"></textarea>
+
+            <button type="submit">Jetzt buchen</button>
+        </form>
+    </section>
+
+    <a href="https://wa.me/+250783697405" class="whatsapp-button" target="_blank">
+        <img src="whatsapp.jpeg" alt="WhatsApp Chat">
+    </a>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <p>E-Mail: <a href="mailto:deutchconnecta@gmail.com">deutchconnecta@gmail.com</a></p>
+                <p>Telefon/WhatsApp: <a href="tel:+250783697405">+250 783 697 405</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            if (selectedLanguage === 'en') {
+                window.location.href = 'booking.html'; // Adjust path to English version
+            } else if (selectedLanguage === 'de') {
+                window.location.href = 'booking_de.html'; // This is your current German version
+            }
+        });
+    </script>
+   <script>
+    function updateLinks(lang) {
+        document.getElementById('home-link').href = `index.html?lang=${lang}`;
+        document.getElementById('about-link').href = `about.html?lang=${lang}`;
+        document.getElementById('services-link').href = `services.html?lang=${lang}`;
+        document.getElementById('booking-link').href = `booking.html?lang=${lang}`;
+        document.getElementById('materials-link').href = `materials.html?lang=${lang}`;
+        document.getElementById('contact-link').href = `contact.html?lang=${lang}`;
+        document.getElementById('blog-link').href = `blog.html?lang=${lang}`;
+    }
+
+    // Automatically update the links based on the current language
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || 'de'; // Default to German if lang is not set
+        updateLinks(lang);
+
+        // Set the correct option in the language dropdown
+        document.getElementById('language-select').value = lang;
+    };
+
+    // Handle language switch
+    function switchLanguage(lang) {
+        updateLinks(lang);
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', lang);
+        window.location.href = url.toString();
+    }
+</script>
+</body>
+</html>
